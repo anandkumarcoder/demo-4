@@ -26,12 +26,12 @@ public class OndcVendor {
     // constructor with argument in place
 
     public OndcVendor(String vendorId, String vendorName, String vendorPhoneNumber, String vendorEmail,
-            String vendorAddress, String vendorTaxId) {
+            String address, String vendorTaxId) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
         this.vendorPhoneNumber = vendorPhoneNumber;
         this.vendorEmail = vendorEmail;
-        this.vendorAddress = vendorAddress;
+        this.vendorAddress = address;
         this.vendorTaxId = vendorTaxId;
     }
 
