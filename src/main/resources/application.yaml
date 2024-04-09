@@ -1,0 +1,11 @@
+# this file is for configuring db connection
+# spring:
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/ondc_vendor?useSSL=false
+#     username: root
+#     password: Mobile#9738
+
+
+# JPA settings
+
+# jpa.hibernate.ddl_auto: create / update
