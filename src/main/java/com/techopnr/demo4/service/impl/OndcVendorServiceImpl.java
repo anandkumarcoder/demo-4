@@ -8,21 +8,16 @@ import com.techopnr.demo4.model.OndcVendor;
 import com.techopnr.demo4.repository.OndcVendorRepository;
 import com.techopnr.demo4.service.OndcVendorService;
 
-
-
 // Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'ondcVendorServiceImpl' defined in file [D:\Anand\java 2024\demo-4\demo-4\target\classes\com\techopnr\demo4\service\impl\OndcVendorServiceImpl.class]:
 @Service
 public class OndcVendorServiceImpl implements OndcVendorService {
 
-
-  
-// repository  anotation 
+    // repository anotation
     OndcVendorRepository ondcVendorRepository;
 
     public OndcVendorServiceImpl(OndcVendorRepository ondcVendorRepository) {
         this.ondcVendorRepository = ondcVendorRepository;
-    }  // constructor based on  cloudVendorRepository 
-
+    } // constructor based on cloudVendorRepository
 
     @Override
     public String createOndcVendor(OndcVendor ondcVendor) {
@@ -30,14 +25,12 @@ public class OndcVendorServiceImpl implements OndcVendorService {
         return "created successfully";
     }
 
-
     @Override
     public List<OndcVendor> getAllOndcVendor() {
         // TODO Auto-generated method stub
-        
+
         return ondcVendorRepository.findAll();
     }
-
 
     @Override
     public OndcVendor getOndcVendor(String ondcVendorId) {
@@ -45,15 +38,11 @@ public class OndcVendorServiceImpl implements OndcVendorService {
         return ondcVendorRepository.findById(ondcVendorId).get();
     }
 
-
     @Override
     public String updateOndcVendor(OndcVendor ondcVendor) {
         // TODO Auto-generated method stub
-        return null;
+        ondcVendorRepository.save(ondcVendor);
+        return "updated successfully";
     }
 
-
-
-
-    
 }
