@@ -34,14 +34,15 @@ public class OndcVendorServiceImpl implements OndcVendorService {
     @Override
     public List<OndcVendor> getAllOndcVendor() {
         // TODO Auto-generated method stub
-        return null;
+        
+        return ondcVendorRepository.findAll();
     }
 
 
     @Override
     public OndcVendor getOndcVendor(String ondcVendorId) {
         // TODO Auto-generated method stub
-        return null;
+        return ondcVendorRepository.findById(ondcVendorId).get();
     }
 
 
