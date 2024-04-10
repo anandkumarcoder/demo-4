@@ -2,27 +2,24 @@ package com.techopnr.demo4.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.techopnr.demo4.model.OndcVendor;
 import com.techopnr.demo4.repository.OndcVendorRepository;
 import com.techopnr.demo4.service.OndcVendorService;
 
-
-
 // Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'ondcVendorServiceImpl' defined in file [D:\Anand\java 2024\demo-4\demo-4\target\classes\com\techopnr\demo4\service\impl\OndcVendorServiceImpl.class]:
 @Service
 public class OndcVendorServiceImpl implements OndcVendorService {
 
-
-  
-// repository  anotation 
+    // repository anotation
     OndcVendorRepository ondcVendorRepository;
 
     public OndcVendorServiceImpl(OndcVendorRepository ondcVendorRepository) {
         this.ondcVendorRepository = ondcVendorRepository;
-    }  // constructor based on  cloudVendorRepository 
-
+    } // constructor based on cloudVendorRepository
 
     @Override
     public String createOndcVendor(OndcVendor ondcVendor) {
@@ -30,29 +27,33 @@ public class OndcVendorServiceImpl implements OndcVendorService {
         return "created successfully";
     }
 
-
     @Override
-    public List<OndcVendor> getAllOndcVendor() {
+    public List<OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize) {
         // TODO Auto-generated method stub
-        return null;
-    }
 
+        /* int  pageSize = 5;
+        int pageNumber = 1; */
+        
+        Pageable p = PageRequest.of(pageNumber, pageSize);
+
+
+
+
+
+        return ondcVendorRepository.findAll();
+    }
 
     @Override
     public OndcVendor getOndcVendor(String ondcVendorId) {
         // TODO Auto-generated method stub
-        return null;
+        return ondcVendorRepository.findById(ondcVendorId).get();
     }
-
 
     @Override
     public String updateOndcVendor(OndcVendor ondcVendor) {
         // TODO Auto-generated method stub
-        return null;
+        ondcVendorRepository.save(ondcVendor);
+        return "updated successfully";
     }
 
-
-
-
-    
 }

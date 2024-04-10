@@ -9,5 +9,5 @@ public interface OndcVendorService {
     public String createOndcVendor(OndcVendor ondcVendor);
     public String updateOndcVendor(OndcVendor ondcVendor);
     public OndcVendor getOndcVendor(String ondcVendorId);
-    public List <OndcVendor> getAllOndcVendor();
+    public List <OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize);
 }

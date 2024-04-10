@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techopnr.demo4.model.OndcVendor;
@@ -33,9 +35,10 @@ public class OndcVendorController {
 
 
     @GetMapping()
-    public List<OndcVendor> getAllVendorDetails(String vendorId){
-
-        return ondcVendorService.getAllOndcVendor();
+    public List<OndcVendor> getAllVendorDetails( @RequestParam(value = "pageNumber", defaultValue ="1",required = false)Integer pageNumber,
+    @RequestParam(value = "pageSize", defaultValue ="5",required = false) Integer pageSize){
+       
+        return ondcVendorService.getAllOndcVendor(pageNumber, pageSize);
     }
 
 
@@ -43,5 +46,14 @@ public class OndcVendorController {
     public String createOndcVendorDetails(@RequestBody OndcVendor ondcVendor){
         ondcVendorService.createOndcVendor(ondcVendor);
         return "Ondc vendor created successfully";
+    }
+
+
+    @PutMapping
+    public String updateOndcVendorDetails(@RequestBody OndcVendor ondcVendor) {
+
+        ondcVendorService.updateOndcVendor(ondcVendor);
+        return "cloud vendor updated successfully";
+
     }
 }
