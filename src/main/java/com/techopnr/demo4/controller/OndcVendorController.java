@@ -2,6 +2,7 @@ package com.techopnr.demo4.controller;
 
 import java.util.List;
 
+import org.hibernate.service.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,10 +37,16 @@ public class OndcVendorController {
 
     @GetMapping()
     public List<OndcVendor> getAllVendorDetails( @RequestParam(value = "pageNumber", defaultValue ="1",required = false)Integer pageNumber,
-    @RequestParam(value = "pageSize", defaultValue ="5",required = false) Integer pageSize){
+    @RequestParam(value = "pageSize", defaultValue ="2",required = false) Integer pageSize){
        
         return ondcVendorService.getAllOndcVendor(pageNumber, pageSize);
     }
+
+    // @GetMapping()
+    // public List<OndcVendor> getAllVendorDetails( ){
+    // //    List <OndcVendor> allProducts = Service.findAll()
+    //     // return ondcVendorService.getAllOndcVendor();
+    // }
 
 
     @PostMapping
