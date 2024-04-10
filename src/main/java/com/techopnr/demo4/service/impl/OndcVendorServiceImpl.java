@@ -2,6 +2,8 @@ package com.techopnr.demo4.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,9 @@ import com.techopnr.demo4.service.OndcVendorService;
 public class OndcVendorServiceImpl implements OndcVendorService {
 
     // repository anotation
-    OndcVendorRepository ondcVendorRepository;
+    private final OndcVendorRepository ondcVendorRepository;
 
+    @Autowired
     public OndcVendorServiceImpl(OndcVendorRepository ondcVendorRepository) {
         this.ondcVendorRepository = ondcVendorRepository;
     } // constructor based on cloudVendorRepository
@@ -34,13 +37,11 @@ public class OndcVendorServiceImpl implements OndcVendorService {
         /* int  pageSize = 5;
         int pageNumber = 1; */
         
-        Pageable p = PageRequest.of(pageNumber, pageSize);
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        Page <OndcVendor> page = ondcVendorRepository.findAll(pageRequest);
 
 
-
-
-
-        return ondcVendorRepository.findAll();
+        return page.getContent();
     }
 
     @Override
