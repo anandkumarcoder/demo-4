@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techopnr.demo4.model.OndcVendor;
@@ -34,9 +35,10 @@ public class OndcVendorController {
 
 
     @GetMapping()
-    public List<OndcVendor> getAllVendorDetails(String vendorId){
-
-        return ondcVendorService.getAllOndcVendor();
+    public List<OndcVendor> getAllVendorDetails( @RequestParam(value = "pageNumber", defaultValue ="1",required = false)Integer pageNumber,
+    @RequestParam(value = "pageSize", defaultValue ="5",required = false) Integer pageSize){
+       
+        return ondcVendorService.getAllOndcVendor(pageNumber, pageSize);
     }
 
 

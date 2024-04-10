@@ -2,6 +2,8 @@ package com.techopnr.demo4.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.techopnr.demo4.model.OndcVendor;
@@ -26,8 +28,17 @@ public class OndcVendorServiceImpl implements OndcVendorService {
     }
 
     @Override
-    public List<OndcVendor> getAllOndcVendor() {
+    public List<OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize) {
         // TODO Auto-generated method stub
+
+        /* int  pageSize = 5;
+        int pageNumber = 1; */
+        
+        Pageable p = PageRequest.of(pageNumber, pageSize);
+
+
+
+
 
         return ondcVendorRepository.findAll();
     }
