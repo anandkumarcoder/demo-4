@@ -3,6 +3,7 @@ package com.techopnr.demo4.controller;
 import java.util.List;
 
 import org.hibernate.service.Service;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +21,8 @@ import com.techopnr.demo4.service.OndcVendorService;
 @RestController
 @RequestMapping("/ondcvendor")
 public class OndcVendorController {
-
-    OndcVendorService ondcVendorService;
+    
+     private  OndcVendorService ondcVendorService;
 
     public OndcVendorController(OndcVendorService ondcVendorService) {
         this.ondcVendorService = ondcVendorService;
@@ -36,7 +37,7 @@ public class OndcVendorController {
 
 
     @GetMapping()
-    public List<OndcVendor> getAllVendorDetails( @RequestParam(value = "pageNumber", defaultValue ="1",required = false)Integer pageNumber,
+    public Page<OndcVendor> getAllVendorDetails( @RequestParam(value = "pageNumber", defaultValue ="1",required = false)Integer pageNumber,
     @RequestParam(value = "pageSize", defaultValue ="2",required = false) Integer pageSize){
        
         return ondcVendorService.getAllOndcVendor(pageNumber, pageSize);
@@ -47,6 +48,14 @@ public class OndcVendorController {
     // //    List <OndcVendor> allProducts = Service.findAll()
     //     // return ondcVendorService.getAllOndcVendor();
     // }
+
+    /* @GetMapping
+    public Page<OndcVendor> getAllVendorDetails(
+        @RequestParam(name = "pageNo" , defaultValue = "0") int pageNo,
+        @RequestParam(name = "pageSize" , defaultValue = "2") int pageSize ){
+            return ondcVendorService.getAllVendorDetails(pageNo,pageSize);
+        } */
+   
 
 
     @PostMapping
