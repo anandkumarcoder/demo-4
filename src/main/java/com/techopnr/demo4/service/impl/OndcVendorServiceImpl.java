@@ -31,17 +31,12 @@ public class OndcVendorServiceImpl implements OndcVendorService {
     }
 
     @Override
-    public List<OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize) {
-        // TODO Auto-generated method stub
+    public Page<OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize) {
 
-        /* int  pageSize = 5;
-        int pageNumber = 1; */
-        
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
-        Page <OndcVendor> page = ondcVendorRepository.findAll(pageRequest);
+        // Page <OndcVendor> page = ondcVendorRepository.findAll(pageRequest);
 
-
-        return page.getContent();
+        return ondcVendorRepository.findAll(pageRequest);
     }
 
     @Override
