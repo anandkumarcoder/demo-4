@@ -12,7 +12,6 @@ import com.techopnr.demo4.model.OndcVendor;
 import com.techopnr.demo4.repository.OndcVendorRepository;
 import com.techopnr.demo4.service.OndcVendorService;
 
-// Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'ondcVendorServiceImpl' defined in file [D:\Anand\java 2024\demo-4\demo-4\target\classes\com\techopnr\demo4\service\impl\OndcVendorServiceImpl.class]:
 @Service
 public class OndcVendorServiceImpl implements OndcVendorService {
 
@@ -34,20 +33,19 @@ public class OndcVendorServiceImpl implements OndcVendorService {
     public Page<OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize) {
 
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
-        // Page <OndcVendor> page = ondcVendorRepository.findAll(pageRequest);
 
         return ondcVendorRepository.findAll(pageRequest);
     }
 
     @Override
     public OndcVendor getOndcVendor(String ondcVendorId) {
-        // TODO Auto-generated method stub
+
         return ondcVendorRepository.findById(ondcVendorId).get();
     }
 
     @Override
     public String updateOndcVendor(OndcVendor ondcVendor) {
-        // TODO Auto-generated method stub
+
         ondcVendorRepository.save(ondcVendor);
         return "updated successfully";
     }
