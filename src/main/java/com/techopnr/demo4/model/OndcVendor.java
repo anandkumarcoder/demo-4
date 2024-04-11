@@ -17,7 +17,6 @@ public class OndcVendor {
     private String vendorAddress;
     private String vendorTaxId;
 
-    
     // empty constructor
     public OndcVendor() {
 
@@ -34,8 +33,6 @@ public class OndcVendor {
         this.vendorAddress = address;
         this.vendorTaxId = vendorTaxId;
     }
-
-
 
     public String getVendorId() {
         return vendorId;
