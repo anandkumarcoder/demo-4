@@ -1,16 +1,71 @@
 package com.techopnr.demo4.service;
 
-import org.springframework.data.domain.Page;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.techopnr.demo4.model.OndcVendor;
+import com.techopnr.demo4.repository.OndcVendorRepository;
 
-public interface OndcVendorService {
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
-    public String createOndcVendor(OndcVendor ondcVendor);
 
-    public String updateOndcVendor(OndcVendor ondcVendor);
+@Service
+public class OndcVendorService {
 
-    public OndcVendor getOndcVendor(String ondcVendorId);
+    @Autowired
+    private OndcVendorRepository ondcVendorRepository;
 
-    public Page<OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize);
+    // service layer interacts with repository layer and model layer
+
+
+    // constructor
+    public OndcVendorService(OndcVendorRepository ondcVendorRepository) {
+        this.ondcVendorRepository = ondcVendorRepository;
+    }
+
+
+    // creating record
+    public String createOndcVendor(OndcVendor ondcVendor) {
+        //service layer interacting with model layer/ class
+        ondcVendorRepository.save(ondcVendor);
+        return "created successfully";
+    }
+
+    // updating record
+    public String updateOndcVendor(OndcVendor ondcVendor) {
+
+        ondcVendorRepository.save(ondcVendor);
+        return "updated successfully";
+    }
+
+    // records by id
+
+    public OndcVendor getOndcVendor(String ondcVendorId) {
+
+        return ondcVendorRepository.findById(ondcVendorId).get();
+    }
+
+
+    // getting all details
+
+    public List<OndcVendor> getAllOndcVendor() {
+      
+
+        return ondcVendorRepository.findAll();
+    }
+
+    // pagination
+    public Page<OndcVendor> getAllOndcVendorWithPagination(Integer pageNumber, Integer pageSize) {
+
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+
+        return ondcVendorRepository.getReportList(pageRequest);
+    }
 }
+
+
+
