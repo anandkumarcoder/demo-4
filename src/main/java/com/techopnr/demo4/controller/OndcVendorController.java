@@ -22,7 +22,6 @@ import com.techopnr.demo4.service.OndcVendorService;
 @RequestMapping("/ondcvendor")
 public class OndcVendorController {
 
-
     @Autowired
     private OndcVendorService ondcVendorService;
 
@@ -30,15 +29,16 @@ public class OndcVendorController {
         this.ondcVendorService = ondcVendorService;
         // constructor based on cloudVendorService
     }
-// getting details as per id
+
+    // getting details as per id
     @GetMapping("{vendorId}")
     public OndcVendor getOndcVendorDetails(@PathVariable("vendorId") String vendorId) {
 
         return ondcVendorService.getOndcVendor(vendorId);
     }
 
-    // control layer sends instruction to service layer and returns the method applied in service layer
-
+    // control layer sends instruction to service layer and returns the method
+    // applied in service layer
 
     // pagination
     @GetMapping()
@@ -51,24 +51,24 @@ public class OndcVendorController {
 
     // live filter
 
-    /* @GetMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity<Page<OndcVendor>> search(
             @RequestParam String query,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         Page<OndcVendor> results = ondcVendorService.searchData(query, PageRequest.of(page, size));
         return ResponseEntity.ok(results);
-    } */
-
+    }
 
     // getting all the details in list
 
-   /*  @GetMapping()
-    public List<OndcVendor> getAllVendorDetails(String vendorId){
-
-        return ondcVendorService.getAllOndcVendor();
-    } */
-
+    /*
+     * @GetMapping()
+     * public List<OndcVendor> getAllVendorDetails(String vendorId){
+     * 
+     * return ondcVendorService.getAllOndcVendor();
+     * }
+     */
 
     // creating enteries
     @PostMapping
@@ -76,7 +76,6 @@ public class OndcVendorController {
         ondcVendorService.createOndcVendor(ondcVendor);
         return "Ondc vendor created successfully";
     }
-
 
     // updating enteries in DB
     @PutMapping

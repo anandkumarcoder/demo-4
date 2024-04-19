@@ -65,6 +65,11 @@ public class OndcVendorService {
 
         return ondcVendorRepository.getReportList(pageRequest);
     }
+
+    // like filter
+    public Page<OndcVendor> searchData(String query, Pageable pageable) {
+        return ondcVendorRepository.searchByQuery(query, pageable);
+    }
 }
 
 
