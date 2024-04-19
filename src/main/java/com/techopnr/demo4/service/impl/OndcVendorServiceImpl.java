@@ -1,4 +1,4 @@
-package com.techopnr.demo4.service.impl;
+/* package com.techopnr.demo4.service.impl;
 
 import java.util.List;
 
@@ -29,12 +29,20 @@ public class OndcVendorServiceImpl implements OndcVendorService {
         return "created successfully";
     }
 
+    // pagination
     @Override
     public Page<OndcVendor> getAllOndcVendor(Integer pageNumber, Integer pageSize) {
 
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
 
-        return ondcVendorRepository.findAll(pageRequest);
+        return ondcVendorRepository.getReportList(pageRequest);
+    }
+
+    // live filter
+    @Override
+    public Page<OndcVendor> searchData(String query, Pageable pageable) {
+
+        return ondcVendorRepository.findByCriteria(query, pageable);
     }
 
     @Override
@@ -51,3 +59,4 @@ public class OndcVendorServiceImpl implements OndcVendorService {
     }
 
 }
+ */
