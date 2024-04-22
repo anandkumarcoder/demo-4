@@ -3,8 +3,10 @@ package com.techopnr.demo4.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +43,7 @@ public class OndcVendorController {
     // applied in service layer
 
     // pagination
-    @GetMapping()
+    @GetMapping
     public Page<OndcVendor> getAllOndcVendorWithPagination(
             @RequestParam(value = "pageNumber", defaultValue = "1", required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "3", required = false) Integer pageSize) {
@@ -51,13 +53,25 @@ public class OndcVendorController {
 
     // live filter
 
-    @GetMapping("/search")
+    /* @GetMapping("/search")
     public ResponseEntity<Page<OndcVendor>> search(
             @RequestParam String query,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         Page<OndcVendor> results = ondcVendorService.searchData(query, PageRequest.of(page, size));
         return ResponseEntity.ok(results);
+    } */
+    @GetMapping("/api/vendors/searchByKeyword")
+    public Page<OndcVendor> searchData(
+            @RequestParam("keyword") String keyword,
+            @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        
+        // Create a Pageable object for pagination
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        // Call the service method to search vendors by keyword
+        return ondcVendorService.searchData(keyword, pageable);
     }
 
     // getting all the details in list

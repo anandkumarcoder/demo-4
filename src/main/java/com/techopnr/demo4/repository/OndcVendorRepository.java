@@ -36,9 +36,16 @@ Page<OndcVendor> searchByQuery(String query, Pageable pageable); */
 
 
 
-@Query(value = "SELECT * FROM ecom_vendor.vendors WHERE vendor_address LIKE :searchTerm OR vendor_name LIKE :searchTerm OR vendor_tax_id LIKE :searchTerm", nativeQuery = true)
-Page<OndcVendor> searchByQuery(@Param("searchTerm") String searchTerm, Pageable pageable);
+/* @Query(value = "SELECT * FROM ecom_vendor.vendors WHERE vendor_address LIKE :searchTerm OR vendor_name LIKE :searchTerm OR vendor_tax_id LIKE :searchTerm", nativeQuery = true)
+Page<OndcVendor> searchByQuery(@Param("searchTerm") String searchTerm, Pageable pageable); */
 
+
+@Query(value = "SELECT * FROM ecom_vendor.vendors " +
+            "WHERE vendor_address LIKE %?1% " +
+            "OR vendor_name LIKE %?1% " +
+            "OR vendor_tax_id LIKE %?1%",
+            nativeQuery = true)
+    Page<OndcVendor> searchByKeyword(String keyword, Pageable pageable);
 
 
 
