@@ -53,15 +53,8 @@ public class OndcVendorController {
 
     // live filter
 
-    /* @GetMapping("/search")
-    public ResponseEntity<Page<OndcVendor>> search(
-            @RequestParam String query,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        Page<OndcVendor> results = ondcVendorService.searchData(query, PageRequest.of(page, size));
-        return ResponseEntity.ok(results);
-    } */
-    @GetMapping("/api/vendors/searchByKeyword")
+ 
+    @GetMapping("/searchByKeyword")
     public Page<OndcVendor> searchData(
             @RequestParam("keyword") String keyword,
             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
@@ -100,3 +93,21 @@ public class OndcVendorController {
 
     }
 }
+
+
+/* 
+ * 
+ *    @GetMapping("/api/vendors/searchByKeyword")
+    public Page<OndcVendor> searchData(
+            @RequestParam("keyword") String keyword,
+            @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        
+        // Create a Pageable object for pagination
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        // Call the service method to search vendors by keyword
+        return ondcVendorService.searchData(keyword, pageable);
+    }
+
+ */
