@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-
 @Service
 public class OndcVendorService {
 
@@ -21,16 +20,14 @@ public class OndcVendorService {
 
     // service layer interacts with repository layer and model layer
 
-
     // constructor
     public OndcVendorService(OndcVendorRepository ondcVendorRepository) {
         this.ondcVendorRepository = ondcVendorRepository;
     }
 
-
     // creating record
     public String createOndcVendor(OndcVendor ondcVendor) {
-        //service layer interacting with model layer/ class
+        // service layer interacting with model layer/ class
         ondcVendorRepository.save(ondcVendor);
         return "created successfully";
     }
@@ -49,11 +46,9 @@ public class OndcVendorService {
         return ondcVendorRepository.findById(ondcVendorId).get();
     }
 
-
     // getting all details
 
     public List<OndcVendor> getAllOndcVendor() {
-      
 
         return ondcVendorRepository.findAll();
     }
@@ -65,7 +60,9 @@ public class OndcVendorService {
 
         return ondcVendorRepository.getReportList(pageRequest);
     }
+
+    // like filter
+    public Page<OndcVendor> searchData(String query, Pageable pageable) {
+        return ondcVendorRepository.searchByKeyword(query, pageable);
+    }
 }
-
-
-
