@@ -52,6 +52,7 @@ public class CustomerAddressController {
     }
 
     // get records by id
+    // want to search by customer id but in postman it is happening as per id
     @GetMapping("{customerId}")
     public CustomerAddress getDetailsById(@PathVariable("customerId") String customerId) {
         return customerAddressService.getCustomerAddressById(customerId);
